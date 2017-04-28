@@ -34,7 +34,7 @@ ctx.setup = ctx.resize = function () {
 
 ctx.update = function () {
   const center = [ctx.width / 2, ctx.height / 2]
-  if (leaves.length < settings.leafCount && Math.random() < 0.08) {
+  if (leaves.length < settings.leafCount && Math.random() < 0.2) {
     const direction = Math.random() * Math.PI * 2
     const dist = Math.pow(Math.random(), 0.5) * settings.canvasSize
     const position = [
@@ -116,6 +116,7 @@ function drawLeaf (ctx, leaf) {
   const { branches } = leaf
   const leafOutline = branches.reduce((line, branch) => {
     line.push(branch.positions[branch.positions.length - 1])
+    // line.push(branch.positions[0])
     return line
   }, [])
 
@@ -134,7 +135,7 @@ function drawLeaf (ctx, leaf) {
     drawTriangle(ctx, tri, color)
   }
 
-  branches.forEach(({ positions }) => drawLine(ctx, positions, `rgba(250, 250, 250, 0.35)`))
+  branches.forEach(({ positions }) => drawLine(ctx, positions, `rgba(250, 250, 250, 0.15)`))
 }
 
 function drawLine (ctx, positions, color) {
